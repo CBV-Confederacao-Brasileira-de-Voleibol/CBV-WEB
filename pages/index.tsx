@@ -1,8 +1,6 @@
-import { AppBar, Button, Input, TextField } from "@mui/material";
 import styles from "../styles/Home.module.scss";
 import * as React from "react";
 import { Table } from "../components/Table";
-import Link from "next/link";
 
 
 function createData(

@@ -6,7 +6,7 @@ import styles from "../styles/App.module.scss";
 import { useRouter } from 'next/router';
 
 
-const blueTheme = createTheme({palette: {primary: colors.cyan, secondary: colors.yellow}, components: {
+const blueTheme = createTheme({palette: {primary: colors.blueGrey, secondary: colors.amber}, components: {
   MuiOutlinedInput: {
     styleOverrides: {
       input: {
@@ -38,7 +38,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <ThemeProvider theme={blueTheme}>
       <div className={styles.container}>
-        <AppBar className={styles.Header}>
+        <AppBar className={styles.Header} color='secondary'>
           <ul>
             <li>
               <Link href={{
