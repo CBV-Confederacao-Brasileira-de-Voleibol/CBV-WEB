@@ -1,0 +1,35 @@
+.Header{
+  ul{
+    display: flex;
+    list-style-type: none;
+    li{
+      padding: 1rem;
+      margin-right: 1rem;
+      a{
+        font-size: 20px;
+        color: #fff;
+        text-decoration: none;
+        &:hover{
+          color: #fff;
+        }
+      }
+    }
+  }
+}
+
+.container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  .contentContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    height:80%;
+    width: 80%;
+    background-color: #54505b;
+    border-radius: 20px;
+  }
+}
