@@ -1,7 +1,6 @@
 import styles from "../styles/Home.module.scss";
 import * as React from "react";
-import { Table } from "../components/Table";
-
+import { Table } from "../components/Table/index";
 
 function createData(
   NomeDoTime: string,
