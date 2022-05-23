@@ -26,9 +26,8 @@ export function Table({ rows }: tableProps) {
           <TableRow>
             <TableCell align="right">Nome da Competicao</TableCell>
             <TableCell align="right">Tipo</TableCell>
-            <TableCell align="right">Numero de Times Participantes</TableCell>
             <TableCell align="right">Data de Inicio</TableCell>
-            <TableCell align="right">Estado</TableCell>
+            <TableCell align="right">Data de Fim</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
