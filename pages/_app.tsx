@@ -6,35 +6,17 @@ import styles from "../styles/App.module.scss";
 import { useRouter } from "next/router";
 
 const blueTheme = createTheme({
-  palette: { primary: colors.blueGrey, secondary: colors.amber },
-  components: {
-    MuiOutlinedInput: {
-      styleOverrides: {
-        input: {
-          color: "#fff",
-        },
-        notchedOutline: {
-          borderColor: "#ccc",
-        },
-      },
-    },
-    MuiInputLabel: {
-      styleOverrides: {
-        root: {
-          color: "#ccc",
-        },
-      },
-    },
-  },
+  palette: { primary: colors.blue, secondary: colors.amber },
 });
 
 const routesDictionary = {
-  "/": "Times",
+  "/": "Ligas",
   "/create-team": "Criar time",
-  "/create-player": "Criar jogador",
+  "/create-player": "gador",
   "/competition-registration": "Criar Competições",
   "/registered-members": "Membros Registrados",
   "/registered-competition": "Competições Registradas",
+  "/create-member": "Criar membro",
 };
 
 function MyApp({ Component, pageProps }) {
@@ -66,12 +48,10 @@ function MyApp({ Component, pageProps }) {
               </Link>
             </li>
             <li>
-              <Link
-                href={{
-                  pathname: "/create-player",
-                }}
-              >
-                <a>Criar Jogador</a>
+              <Link href={{
+                pathname: "/create-member",
+              }}>
+                <a>Criar Membro</a>
               </Link>
             </li>
             <li>
