@@ -9,7 +9,7 @@ interface leagueProps{
 export function LeagueContainer(league:leagueProps){
   return(
       <div>
-        <h1>{league.name}</h1>
+        <a href="#"><h1>{league.name}</h1></a>
         <p>{league.description}</p>
         <p>{league.dateStart.toString()}</p>
         <p>{league.DateEnd.toString()}</p>

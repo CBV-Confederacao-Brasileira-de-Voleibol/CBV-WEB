@@ -1,7 +1,7 @@
 import styles from "../styles/Home.module.scss";
 import * as React from "react";
 import { Button } from "@mui/material";
-import { LeagueContainer } from "../components/League";
+import { LeagueContainer } from "../components/League/index";
 
 export default function Home() {
   return (

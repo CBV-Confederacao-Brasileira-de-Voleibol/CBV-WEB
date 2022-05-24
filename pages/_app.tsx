@@ -12,6 +12,7 @@ const blueTheme = createTheme({
 const routesDictionary = {
   "/": "Ligas",
   "/create-team": "Criar time",
+  "/registered-team": "Times Registrados",
   "/create-player": "gador",
   "/competition-registration": "Criar Competições",
   "/registered-members": "Membros Registrados",
@@ -45,6 +46,15 @@ function MyApp({ Component, pageProps }) {
                 }}
               >
                 <a>Criar time</a>
+              </Link>
+            </li>
+            <li>
+              <Link
+                href={{
+                  pathname: "/registered-team",
+                }}
+              >
+                <a>Times Registrados</a>
               </Link>
             </li>
             <li>
