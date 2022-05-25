@@ -13,7 +13,7 @@ interface tableProps {
 interface rowProp {
     jogosQueTiveram: string;
     Resultado: string;
-    timesParticipantes: string;
+    id: string
 }
 
 export function Table({ rows }: tableProps) {
@@ -24,15 +24,13 @@ export function Table({ rows }: tableProps) {
             <TableRow>
               <TableCell align="right">Historico de Jogos</TableCell>
               <TableCell align="right">Resultado da Partida</TableCell>
-              <TableCell align="right">Times Participantes</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {rows.map((row) => (
-              <TableRow>
+              <TableRow key={row.id}>
                 <TableCell align="right">{row.jogosQueTiveram}</TableCell>
                 <TableCell align="right">{row.Resultado}</TableCell>
-                <TableCell align="right">{row.timesParticipantes}</TableCell>
               </TableRow>
             ))}
           </TableBody>

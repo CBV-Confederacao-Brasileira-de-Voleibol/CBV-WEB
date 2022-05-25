@@ -1,21 +1,20 @@
-interface leagueProps{
+import { useRouter } from "next/router";
+import styles from "./Team.module.scss";
+interface TeamsProps{
   name: string;
-  description: string;
-  year: string;
-  dateStart: Date;
-  DateEnd: Date;
-  type: string
+  liga: string;
+  escudo: string;
+  id: string
 }
 
-export function LeagueContainer(league:leagueProps){
-  return(
-      <div>
-        <h1>{league.name}</h1>
-        <p>{league.description}</p>
-        <p>{league.year}</p>
-        <p>{league.dateStart.toString()}</p>
-        <p>{league.DateEnd.toString()}</p>
-        <p>{league.type}</p>
-      </div>
-  )
-}
+export function TeamContainer(team:TeamsProps){
+  const router = useRouter()
+    return(
+        <div className={styles.container} onClick={() => router.push(`/team/${team.id}`)}>
+          <img src={team.escudo} alt={team.name}/>
+          <h4>{team.name}</h4>
+          <p>{team.liga}</p>
+        </div>
+    )
+  }
+

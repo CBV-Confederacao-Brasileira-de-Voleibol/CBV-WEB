@@ -4,10 +4,12 @@ import { AiOutlineHome } from "react-icons/ai";
 import "../styles/globals.css";
 import styles from "../styles/App.module.scss";
 import { useRouter } from "next/router";
+import dayjs from "dayjs";
 
 const blueTheme = createTheme({
   palette: { primary: colors.blue, secondary: colors.amber },
 });
+dayjs.locale('pt-br')
 
 const routesDictionary = {
   "/": "Ligas",
@@ -35,64 +37,10 @@ function MyApp({ Component, pageProps }) {
                   pathname: "/",
                 }}
               >
-                <a>
                   <AiOutlineHome />
-                </a>
               </Link>
             </li>
-            <li>
-              <Link
-                href={{
-                  pathname: "/create-team",
-                }}
-              >
-                <a>Criar time</a>
-              </Link>
-            </li>
-            <li>
-              <Link
-                href={{
-                  pathname: "/registered-team",
-                }}
-              >
-                <a>Times Registrados</a>
-              </Link>
-            </li>
-            <li>
-              <Link href={{
-                pathname: "/create-member",
-              }}>
-                <a>Criar Membro</a>
-              </Link>
-            </li>
-            <li>
-              <Link
-                href={{
-                  pathname: "/competition-registration",
-                }}
-              >
-                <a>Cadastro de Competições</a>
-              </Link>
-            </li>
-            <li>
-              <Link
-                href={{
-                  pathname: "/registered-members",
-                }}
-              >
-                <a>Membros Registrados</a>
-              </Link>
-            </li>
-            <li>
-              <Link
-                href={{
-                  pathname: "/registered-competition",
-                }}
-              >
-                <a>Competições Registradas</a>
-              </Link>
-            </li>
-          </ul>
+            </ul>
         </AppBar>
         <div className={styles.contentContainer}>
           <h1>{routesDictionary[router.pathname]}</h1>
