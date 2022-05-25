@@ -5,6 +5,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import { useRouter } from "next/router";
 
 interface tableProps {
     rows: rowProp[];
@@ -17,6 +18,7 @@ interface rowProp {
 }
 
 export function Table({ rows }: tableProps) {
+  const router = useRouter();
     return (
       <TableContainer component={Paper} sx={{ maxWidth: 1000 }}>
         <MuiTable sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
@@ -30,7 +32,7 @@ export function Table({ rows }: tableProps) {
             {rows.map((row) => (
               <TableRow key={row.id}>
                 <TableCell align="right">{row.jogosQueTiveram}</TableCell>
-                <TableCell align="right">{row.Resultado}</TableCell>
+                <TableCell align="right" sx={{cursor: "pointer"}} onClick={() => router.push(`/result/${row.id}`)}>{row.Resultado}</TableCell>
               </TableRow>
             ))}
           </TableBody>
