@@ -1,7 +1,8 @@
 import styles from "../styles/Home.module.scss";
 import * as React from "react";
 import { Button } from "@mui/material";
-import { LeagueContainer } from "../components/League/index";
+import { LeagueContainer } from "../components/League";
+
 
 export default function Home() {
   return (
@@ -11,7 +12,7 @@ export default function Home() {
       <LeagueContainer DateEnd={new Date()} dateStart={new Date()} description="liga nova" name="liga 3" type="infantil" />
       <LeagueContainer DateEnd={new Date()} dateStart={new Date()} description="liga nova" name="liga 4" type="infantil" />
 
-      <Button>Adicione nova liga</Button>
+      <Button href="competition-registration">Adicione nova liga</Button>
     </div>
   );
 }

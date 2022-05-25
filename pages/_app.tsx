@@ -18,6 +18,7 @@ const routesDictionary = {
   "/registered-members": "Membros Registrados",
   "/registered-competition": "Competições Registradas",
   "/create-member": "Criar membro",
+  "/competition-details": "Detalhes da competição: Nome Competição",
 };
 
 function MyApp({ Component, pageProps }) {

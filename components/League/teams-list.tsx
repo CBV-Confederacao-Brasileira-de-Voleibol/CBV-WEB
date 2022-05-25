@@ -7,9 +7,9 @@ interface TeamsProps{
 export function LeagueContainer(league:TeamsProps){
     return(
         <div>
-          <a href="#"><h1>{league.name_time}</h1></a>
+          <h1>{league.name_time}</h1>
           <p>{league.liga}</p>
-          <p>{league.escudo}</p> 
+          <a href="Teams-details"><p>{league.escudo}</p></a>
         </div>
     )
   }

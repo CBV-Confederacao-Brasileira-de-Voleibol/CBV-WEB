@@ -9,7 +9,7 @@ export default function Home() {
         <LeagueContainer name_time="Sada Cruzeiro" liga="liga 1" escudo="Lugar do Escudo" />
         <LeagueContainer name_time="Sada Cruzeiro" liga="liga 1" escudo="Lugar do Escudo" />
   
-        <Button>Adicione novo time</Button>
+        <Button href="create-team">Adicione novo time</Button>
       </div>
     );
   }
