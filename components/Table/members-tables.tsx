@@ -13,7 +13,7 @@ interface tableProps {
 interface rowProp {
   Nome: string;
   Tipo: string;
-  Idade: number;
+  DateOfBirth: string;
   Posicao: string;
   Time: string;
 }
@@ -26,7 +26,7 @@ export function Table({ rows }: tableProps) {
           <TableRow>
             <TableCell align="right">Nome</TableCell>
             <TableCell align="right">Tipo</TableCell>
-            <TableCell align="right">Idade</TableCell>
+            <TableCell align="right">Data de nascimento</TableCell>
             <TableCell align="right">Posição</TableCell>
             <TableCell align="right">Time</TableCell>
           </TableRow>
@@ -39,7 +39,7 @@ export function Table({ rows }: tableProps) {
             >
               <TableCell align="right">{row.Nome}</TableCell>
               <TableCell align="right">{row.Tipo}</TableCell>
-              <TableCell align="right">{row.Idade}</TableCell>
+              <TableCell align="right">{row.DateOfBirth}</TableCell>
               <TableCell align="right">{row.Posicao}</TableCell>
               <TableCell align="right">{row.Time}</TableCell>
             </TableRow>
