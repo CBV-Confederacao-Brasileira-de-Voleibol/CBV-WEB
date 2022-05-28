@@ -43,7 +43,7 @@ export default function CompetitionRegistration() {
               />
             )}
           />
-          {/* <Controller
+          <Controller
             name="description"
             control={control}
             render={({field: {value, onChange}}) => (     
@@ -55,7 +55,7 @@ export default function CompetitionRegistration() {
                 onChange={onChange}
               />
             )}
-          /> */}
+          />
           <Controller
             name="type"
             control={control}
