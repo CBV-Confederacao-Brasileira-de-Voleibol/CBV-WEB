@@ -1,23 +1,50 @@
 import styles from "../styles/Home.module.scss";
 import * as React from "react";
-import { Button } from "@mui/material";
+import { Button, CircularProgress } from "@mui/material";
 import { LeagueContainer } from "../components/League";
-import Link from "next/link";
 import { useRouter } from "next/router";
+import { GetServerSideProps } from "next";
+import { http } from "../utils/http";
+import { AiOutlineLoading } from "react-icons/ai";
+
+interface competitions {
+  id: string;
+  name: string;
+  year: number;
+  date_start: Date;
+  date_end: Date;
+  type: string
+}
+interface LeagueProps{
+  competitions: competitions[]
+}
 
 
-export default function Home() {
+
+const Home:React.FC<LeagueProps> = ({competitions}) =>{
   const router = useRouter();
+
   return (
     <div className={styles.container}>
       <div className={styles.leagueContainer}>
-        <LeagueContainer DateEnd={new Date()} dateStart={new Date()} description="liga nova" name="liga 1" type="infantil" id={'1'} />
-        <LeagueContainer DateEnd={new Date()} dateStart={new Date()} description="liga nova" name="liga 2" type="infantil" id={'2'} />
-        <LeagueContainer DateEnd={new Date()} dateStart={new Date()} description="liga nova" name="liga 3" type="infantil" id={'3'} />
-        <LeagueContainer DateEnd={new Date()} dateStart={new Date()} description="liga nova" name="liga 4" type="infantil" id={'4'} />
+        {competitions ? competitions.map(league => {
+          return (
+            <LeagueContainer DateEnd={league.date_end} dateStart={league.date_start} description={""} type={league.type} key={league.id} name={league.name}  id={league.id}/>
+          )
+        }): <CircularProgress />
+        }
       </div>
 
       <Button onClick={() => router.push("/competition-registration")}>Adicione nova liga</Button>
     </div>
   );
+}
+
+export default Home
+
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+  const {data} = await http.get<{competitions: competitions[]}>("competition");
+  return {
+    props: data
+  }
 }

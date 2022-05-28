@@ -17,3 +17,15 @@
     margin-bottom: 10px;
   }
 }
+.formWrapper{
+  height: 100%;
+}
+
+.form{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  >div{
+    margin-bottom: 1rem;
+  }
+}

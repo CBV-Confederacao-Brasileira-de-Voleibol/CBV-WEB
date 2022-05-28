@@ -1,100 +1,152 @@
 import styles from "../../styles/League.module.scss";
 import * as React from "react";
 import { TeamContainer } from "../../components/Team";
-import { Table } from "../../components/Table/compDescricao-table";
-import { Button } from "@mui/material";
+import { Button, CircularProgress } from "@mui/material";
 import { useRouter } from "next/router";
+import { GetServerSideProps } from "next";
+import { http } from "../../utils/http";
+import { Matches } from "../../components/Matches";
 
 
-export default function League() {
+interface Team{
+  id: string;
+  name: string;
+  img: string;
+}
+interface TeamProps{
+  teams: Team[]
+}
+
+
+const League:React.FC<TeamProps> =({teams}) => {
   const router = useRouter()
+  console.log(teams)
   return (
     <div className={styles.contentContainer}>
-      <h1>Detalhes da Liga</h1>
-      <div className={styles.details}>
-
-      <p>Nome: Liga 1</p>
-      <p>Descrição: Primeira liga</p>
-      <p>Inicio: 25/05/2022</p>
-      <p>Fim: 26/05/2023</p>
-      <p>Tipo:infantil </p>
+      <div className={styles.top}>
+        {teams.length < 14 && <Button onClick={() => router.push("/create-team")}>Adicionar um novo time</Button>}
+        <div className={styles.teams}>
+          {teams ? teams.map(team => (
+            <TeamContainer 
+            key={team.id}
+            name={team.name} 
+            escudo={team.img} 
+            id={team.id}
+            />
+            
+            )): <CircularProgress/>}
+        </div>
       </div>
-      <h3>Times</h3>
-      <Button onClick={() => router.push("/create-team")}>Adicionar um novo time</Button>
-      <div className={styles.teams}>
-        <TeamContainer 
-        name="Sada Cruzeiro" 
-        liga="liga 1" 
-        escudo="https://logodownload.org/wp-content/uploads/2017/02/cruzeiro-logo-0.png" 
-          id="1"
-        />
-        <TeamContainer 
-        name="Sada Cruzeiro" 
-        liga="liga 1" 
-        escudo="https://logodownload.org/wp-content/uploads/2017/02/cruzeiro-logo-0.png" 
-          id="1"
-        />
-        <TeamContainer 
-        name="Sada Cruzeiro" 
-        liga="liga 1" 
-        escudo="https://logodownload.org/wp-content/uploads/2017/02/cruzeiro-logo-0.png" 
-          id="1"
-        />
-        <TeamContainer 
-        name="Sada Cruzeiro" 
-        liga="liga 1" 
-        escudo="https://logodownload.org/wp-content/uploads/2017/02/cruzeiro-logo-0.png" 
-          id="1"
-        />
-        <TeamContainer 
-        name="Sada Cruzeiro" 
-        liga="liga 1" 
-        escudo="https://logodownload.org/wp-content/uploads/2017/02/cruzeiro-logo-0.png" 
-          id="1"
-        />
-        <TeamContainer 
-        name="Sada Cruzeiro" 
-        liga="liga 1" 
-        escudo="https://logodownload.org/wp-content/uploads/2017/02/cruzeiro-logo-0.png" 
-          id="1"
-        />
-        <TeamContainer 
-        name="Sada Cruzeiro" 
-        liga="liga 1" 
-        escudo="https://logodownload.org/wp-content/uploads/2017/02/cruzeiro-logo-0.png" 
-          id="1"
-        />
-        <TeamContainer 
-        name="Sada Cruzeiro" 
-        liga="liga 1" 
-        escudo="https://logodownload.org/wp-content/uploads/2017/02/cruzeiro-logo-0.png" 
-          id="1"
-        />
-        <TeamContainer 
-        name="Sada Cruzeiro" 
-        liga="liga 1" 
-        escudo="https://logodownload.org/wp-content/uploads/2017/02/cruzeiro-logo-0.png" 
-          id="1"
-        />
-        <TeamContainer 
-        name="Sada Cruzeiro" 
-        liga="liga 1" 
-        escudo="https://logodownload.org/wp-content/uploads/2017/02/cruzeiro-logo-0.png" 
-          id="1"
-        />
-
-      </div>
-      <div>
-        <Table rows={[{
-          jogosQueTiveram: "Sada Cruzeiro X Blumenau",	
-          Resultado: "Blumenau Venceu Sets - 3:2",
-          id: "1"
-        }]}/>
-      </div>
-      <div>
+      {teams.length === 14 && <div>
         <Button >Iniciar Competição</Button>
         <Button >Finalizar Classificatória</Button>
+      </div>}
+      <div className={styles.bottomRight}>
+        <Matches/>
       </div>
     </div>
   );
+}
+
+export default League
+
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+  const {
+    query: {id}
+  } = ctx;
+
+  // const {data: teams} = await http.get("/teams");
+  const {teams} = {
+    teams:[
+    {
+      "id": "b1d1b277-f281-484a-b9e4-ea7ceefe1350",
+			"name": "Cruzeiro",
+			"img": "https://logodownload.org/wp-content/uploads/2017/02/cruzeiro-logo-0.png",
+			"competition_id": "3a31459e-7543-416f-8f69-c32840f51f38"
+    },
+    {
+      "id": "b1d1b277-f281-484a-b9e4-ea7ceefe1350",
+			"name": "Cruzeiro",
+			"img": "https://logodownload.org/wp-content/uploads/2017/02/cruzeiro-logo-0.png",
+			"competition_id": "3a31459e-7543-416f-8f69-c32840f51f38"
+    },
+    {
+      "id": "b1d1b277-f281-484a-b9e4-ea7ceefe1350",
+			"name": "Cruzeiro",
+			"img": "https://logodownload.org/wp-content/uploads/2017/02/cruzeiro-logo-0.png",
+			"competition_id": "3a31459e-7543-416f-8f69-c32840f51f38"
+    },
+    {
+      "id": "b1d1b277-f281-484a-b9e4-ea7ceefe1350",
+			"name": "Cruzeiro",
+			"img": "https://logodownload.org/wp-content/uploads/2017/02/cruzeiro-logo-0.png",
+			"competition_id": "3a31459e-7543-416f-8f69-c32840f51f38"
+    },
+    {
+      "id": "b1d1b277-f281-484a-b9e4-ea7ceefe1350",
+			"name": "Cruzeiro",
+			"img": "https://logodownload.org/wp-content/uploads/2017/02/cruzeiro-logo-0.png",
+			"competition_id": "3a31459e-7543-416f-8f69-c32840f51f38"
+    },
+    {
+      "id": "b1d1b277-f281-484a-b9e4-ea7ceefe1350",
+			"name": "Cruzeiro",
+			"img": "https://logodownload.org/wp-content/uploads/2017/02/cruzeiro-logo-0.png",
+			"competition_id": "3a31459e-7543-416f-8f69-c32840f51f38"
+    },
+    {
+      "id": "b1d1b277-f281-484a-b9e4-ea7ceefe1350",
+			"name": "Cruzeiro",
+			"img": "https://logodownload.org/wp-content/uploads/2017/02/cruzeiro-logo-0.png",
+			"competition_id": "3a31459e-7543-416f-8f69-c32840f51f38"
+    },
+    {
+      "id": "b1d1b277-f281-484a-b9e4-ea7ceefe1350",
+			"name": "Cruzeiro",
+			"img": "https://logodownload.org/wp-content/uploads/2017/02/cruzeiro-logo-0.png",
+			"competition_id": "3a31459e-7543-416f-8f69-c32840f51f38"
+    },
+    {
+      "id": "b1d1b277-f281-484a-b9e4-ea7ceefe1350",
+			"name": "Cruzeiro",
+			"img": "https://logodownload.org/wp-content/uploads/2017/02/cruzeiro-logo-0.png",
+			"competition_id": "3a31459e-7543-416f-8f69-c32840f51f38"
+    },
+    {
+      "id": "b1d1b277-f281-484a-b9e4-ea7ceefe1350",
+			"name": "Cruzeiro",
+			"img": "https://logodownload.org/wp-content/uploads/2017/02/cruzeiro-logo-0.png",
+			"competition_id": "3a31459e-7543-416f-8f69-c32840f51f38"
+    },
+    {
+      "id": "b1d1b277-f281-484a-b9e4-ea7ceefe1350",
+			"name": "Cruzeiro",
+			"img": "https://logodownload.org/wp-content/uploads/2017/02/cruzeiro-logo-0.png",
+			"competition_id": "3a31459e-7543-416f-8f69-c32840f51f38"
+    },
+    {
+      "id": "b1d1b277-f281-484a-b9e4-ea7ceefe1350",
+			"name": "Cruzeiro",
+			"img": "https://logodownload.org/wp-content/uploads/2017/02/cruzeiro-logo-0.png",
+			"competition_id": "3a31459e-7543-416f-8f69-c32840f51f38"
+    },
+    {
+      "id": "b1d1b277-f281-484a-b9e4-ea7ceefe1350",
+			"name": "Cruzeiro",
+			"img": "https://logodownload.org/wp-content/uploads/2017/02/cruzeiro-logo-0.png",
+			"competition_id": "3a31459e-7543-416f-8f69-c32840f51f38"
+    },
+    {
+      "id": "b1d1b277-f281-484a-b9e4-ea7ceefe1350",
+			"name": "Cruzeiro",
+			"img": "https://logodownload.org/wp-content/uploads/2017/02/cruzeiro-logo-0.png",
+			"competition_id": "3a31459e-7543-416f-8f69-c32840f51f38"
+    },
+  ]}
+
+  return {
+    props: {
+      teams
+    }
+  }
 }
