@@ -5,6 +5,7 @@ import "../styles/globals.css";
 import styles from "../styles/App.module.scss";
 import { useRouter } from "next/router";
 import dayjs from "dayjs";
+import { Toaster } from "react-hot-toast";
 
 const blueTheme = createTheme({
   palette: { primary: colors.blue, secondary: colors.amber },
@@ -28,18 +29,19 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <ThemeProvider theme={blueTheme}>
+      <Toaster />
       <div className={styles.container}>
         <AppBar className={styles.Header} color="secondary">
           <ul>
-            <li>
-              <Link
-                href={{
-                  pathname: "/",
-                }}
-              >
+            <Link
+              href={{
+                pathname: "/",
+              }}
+            >
+              <li>
                   <AiOutlineHome />
-              </Link>
-            </li>
+              </li> 
+            </Link>
             </ul>
         </AppBar>
         <div className={styles.contentContainer}>

@@ -11,11 +11,22 @@ interface tableProps {
 }
 
 interface rowProp {
-  Nome: string;
-  Tipo: string;
-  DateOfBirth: string;
-  Posicao: string;
-  Time: string;
+  name: string;
+  type: string;
+  age: Date;
+  position: string;
+  id: string;
+}
+
+function getAge(date: Date){
+  const today = new Date();
+  const birthDate = new Date(date);
+  let age = today.getFullYear() - birthDate.getFullYear();
+  const m = today.getMonth() - birthDate.getMonth();
+  if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+    age--;
+  }
+  return age;
 }
 
 export function Table({ rows }: tableProps) {
@@ -26,22 +37,20 @@ export function Table({ rows }: tableProps) {
           <TableRow>
             <TableCell align="right">Nome</TableCell>
             <TableCell align="right">Tipo</TableCell>
-            <TableCell align="right">Data de nascimento</TableCell>
+            <TableCell align="right">Idade</TableCell>
             <TableCell align="right">Posição</TableCell>
-            <TableCell align="right">Time</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {rows.map((row) => (
             <TableRow
-              key={row.Nome}
+              key={row.id}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
-              <TableCell align="right">{row.Nome}</TableCell>
-              <TableCell align="right">{row.Tipo}</TableCell>
-              <TableCell align="right">{row.DateOfBirth}</TableCell>
-              <TableCell align="right">{row.Posicao}</TableCell>
-              <TableCell align="right">{row.Time}</TableCell>
+              <TableCell align="right">{row.name}</TableCell>
+              <TableCell align="right">{row.type}</TableCell>
+              <TableCell align="right">{getAge(row.age)}</TableCell>
+              <TableCell align="right">{row.position}</TableCell>
             </TableRow>
           ))}
         </TableBody>
