@@ -10,7 +10,7 @@ import { AiOutlineLoading } from "react-icons/ai";
 interface competitions {
   id: string;
   name: string;
-  year: number;
+  description: string;
   date_start: Date;
   date_end: Date;
   type: string
@@ -29,7 +29,7 @@ const Home:React.FC<LeagueProps> = ({competitions}) =>{
       <div className={styles.leagueContainer}>
         {competitions ? competitions.map(league => {
           return (
-            <LeagueContainer DateEnd={league.date_end} dateStart={league.date_start} description={""} type={league.type} key={league.id} name={league.name}  id={league.id}/>
+            <LeagueContainer DateEnd={league.date_end} dateStart={league.date_start} description={league.description} type={league.type} key={league.id} name={league.name}  id={league.id}/>
           )
         }): <CircularProgress />
         }

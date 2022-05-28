@@ -20,11 +20,10 @@ interface TeamProps{
 
 const League:React.FC<TeamProps> =({teams}) => {
   const router = useRouter()
-  console.log(teams)
   return (
     <div className={styles.contentContainer}>
       <div className={styles.top}>
-        {teams.length < 14 && <Button onClick={() => router.push("/create-team")}>Adicionar um novo time</Button>}
+        {teams.length < 14 && <Button onClick={() => router.push(`/create-team/${router.query.id}`)}>Adicionar um novo time</Button>}
         <div className={styles.teams}>
           {teams ? teams.map(team => (
             <TeamContainer 
@@ -55,98 +54,11 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     query: {id}
   } = ctx;
 
-  // const {data: teams} = await http.get("/teams");
-  const {teams} = {
-    teams:[
-    {
-      "id": "b1d1b277-f281-484a-b9e4-ea7ceefe1350",
-			"name": "Cruzeiro",
-			"img": "https://logodownload.org/wp-content/uploads/2017/02/cruzeiro-logo-0.png",
-			"competition_id": "3a31459e-7543-416f-8f69-c32840f51f38"
-    },
-    {
-      "id": "b1d1b277-f281-484a-b9e4-ea7ceefe1350",
-			"name": "Cruzeiro",
-			"img": "https://logodownload.org/wp-content/uploads/2017/02/cruzeiro-logo-0.png",
-			"competition_id": "3a31459e-7543-416f-8f69-c32840f51f38"
-    },
-    {
-      "id": "b1d1b277-f281-484a-b9e4-ea7ceefe1350",
-			"name": "Cruzeiro",
-			"img": "https://logodownload.org/wp-content/uploads/2017/02/cruzeiro-logo-0.png",
-			"competition_id": "3a31459e-7543-416f-8f69-c32840f51f38"
-    },
-    {
-      "id": "b1d1b277-f281-484a-b9e4-ea7ceefe1350",
-			"name": "Cruzeiro",
-			"img": "https://logodownload.org/wp-content/uploads/2017/02/cruzeiro-logo-0.png",
-			"competition_id": "3a31459e-7543-416f-8f69-c32840f51f38"
-    },
-    {
-      "id": "b1d1b277-f281-484a-b9e4-ea7ceefe1350",
-			"name": "Cruzeiro",
-			"img": "https://logodownload.org/wp-content/uploads/2017/02/cruzeiro-logo-0.png",
-			"competition_id": "3a31459e-7543-416f-8f69-c32840f51f38"
-    },
-    {
-      "id": "b1d1b277-f281-484a-b9e4-ea7ceefe1350",
-			"name": "Cruzeiro",
-			"img": "https://logodownload.org/wp-content/uploads/2017/02/cruzeiro-logo-0.png",
-			"competition_id": "3a31459e-7543-416f-8f69-c32840f51f38"
-    },
-    {
-      "id": "b1d1b277-f281-484a-b9e4-ea7ceefe1350",
-			"name": "Cruzeiro",
-			"img": "https://logodownload.org/wp-content/uploads/2017/02/cruzeiro-logo-0.png",
-			"competition_id": "3a31459e-7543-416f-8f69-c32840f51f38"
-    },
-    {
-      "id": "b1d1b277-f281-484a-b9e4-ea7ceefe1350",
-			"name": "Cruzeiro",
-			"img": "https://logodownload.org/wp-content/uploads/2017/02/cruzeiro-logo-0.png",
-			"competition_id": "3a31459e-7543-416f-8f69-c32840f51f38"
-    },
-    {
-      "id": "b1d1b277-f281-484a-b9e4-ea7ceefe1350",
-			"name": "Cruzeiro",
-			"img": "https://logodownload.org/wp-content/uploads/2017/02/cruzeiro-logo-0.png",
-			"competition_id": "3a31459e-7543-416f-8f69-c32840f51f38"
-    },
-    {
-      "id": "b1d1b277-f281-484a-b9e4-ea7ceefe1350",
-			"name": "Cruzeiro",
-			"img": "https://logodownload.org/wp-content/uploads/2017/02/cruzeiro-logo-0.png",
-			"competition_id": "3a31459e-7543-416f-8f69-c32840f51f38"
-    },
-    {
-      "id": "b1d1b277-f281-484a-b9e4-ea7ceefe1350",
-			"name": "Cruzeiro",
-			"img": "https://logodownload.org/wp-content/uploads/2017/02/cruzeiro-logo-0.png",
-			"competition_id": "3a31459e-7543-416f-8f69-c32840f51f38"
-    },
-    {
-      "id": "b1d1b277-f281-484a-b9e4-ea7ceefe1350",
-			"name": "Cruzeiro",
-			"img": "https://logodownload.org/wp-content/uploads/2017/02/cruzeiro-logo-0.png",
-			"competition_id": "3a31459e-7543-416f-8f69-c32840f51f38"
-    },
-    {
-      "id": "b1d1b277-f281-484a-b9e4-ea7ceefe1350",
-			"name": "Cruzeiro",
-			"img": "https://logodownload.org/wp-content/uploads/2017/02/cruzeiro-logo-0.png",
-			"competition_id": "3a31459e-7543-416f-8f69-c32840f51f38"
-    },
-    {
-      "id": "b1d1b277-f281-484a-b9e4-ea7ceefe1350",
-			"name": "Cruzeiro",
-			"img": "https://logodownload.org/wp-content/uploads/2017/02/cruzeiro-logo-0.png",
-			"competition_id": "3a31459e-7543-416f-8f69-c32840f51f38"
-    },
-  ]}
+  const {data: teams} = await http.get(`/team/competition/${id}`);
 
   return {
     props: {
-      teams
+      teams: teams.teams
     }
   }
 }
