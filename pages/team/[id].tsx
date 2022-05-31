@@ -5,11 +5,15 @@ import { Button } from "@mui/material";
 import { useRouter } from "next/router";
 import { GetServerSideProps } from "next";
 import { http } from "../../utils/http";
+import toast from "react-hot-toast";
+
+
 
 interface Team{
   id: string;
   name: string;
   img: string;
+  competition_id:string;
   competition: {
     name: string;
   };
@@ -28,7 +32,19 @@ interface TeamProps{
   members: Member[]
 }
 
+
 const Team: React.FC<TeamProps> =({team, members}) =>  {
+
+  async function deleteTeam(){
+
+    try {
+      await http.delete(team.id)
+      toast.success('Time deletado com sucesso')
+    } catch (error) {
+      toast.error(error.message)
+    }
+  }  
+
   const router = useRouter()
   return (
     <div className={styles.contentContainer}>
@@ -39,7 +55,11 @@ const Team: React.FC<TeamProps> =({team, members}) =>  {
         <p>{team.competition.name}</p>
       </div>
       <h3>Membros</h3>
+      <div>
+      <Button onClick={() => router.push(`/leagues/${team.competition_id}`)}>Pagina de Ligas</Button>
       <Button onClick={() => router.push(`/create-member/${router.query.id}`)}>Adicionar um novo Membro</Button>
+      <Button onClick={deleteTeam} className={styles.deleteBtn}>Excluir Time</Button>
+      </div>
       <Table rows={members}/>
     </div>
   )
@@ -61,7 +81,8 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   return {
     props: {
       team: team.teams,
-      members: members.members
+      members: members.members,
     }
   }
+
 }

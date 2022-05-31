@@ -5,6 +5,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import router from "next/router";
 
 interface tableProps {
   rows: rowProp[];
@@ -39,6 +40,8 @@ export function Table({ rows }: tableProps) {
             <TableCell align="right">Tipo</TableCell>
             <TableCell align="right">Idade</TableCell>
             <TableCell align="right">Posição</TableCell>
+            <TableCell align="right">Editar</TableCell>
+            <TableCell align="right">Excluir</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -51,6 +54,8 @@ export function Table({ rows }: tableProps) {
               <TableCell align="right">{row.type}</TableCell>
               <TableCell align="right">{getAge(row.age)}</TableCell>
               <TableCell align="right">{row.position}</TableCell>
+              <TableCell align="right"><button>Editar Jogador</button></TableCell>
+              <TableCell align="right"><button>Excluir Jogador</button></TableCell>
             </TableRow>
           ))}
         </TableBody>

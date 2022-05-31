@@ -6,6 +6,8 @@ import { useRouter } from "next/router";
 import { GetServerSideProps } from "next";
 import { http } from "../../utils/http";
 import { Matches } from "../../components/Matches";
+import toast from "react-hot-toast";
+
 
 
 interface Team{
@@ -19,11 +21,23 @@ interface TeamProps{
 
 
 const League:React.FC<TeamProps> =({teams}) => {
+  
+  async function deleteLeague(){
+
+    try {
+      await http.delete(`/leagues/${router.query.id}`);
+      toast.success('Liga deletada com sucesso')
+    } catch (error) {
+      toast.error(error.message)
+    }
+  }
+
   const router = useRouter()
   return (
     <div className={styles.contentContainer}>
       <div className={styles.top}>
         {teams.length < 14 && <Button onClick={() => router.push(`/create-team/${router.query.id}`)}>Adicionar um novo time</Button>}
+        <Button onClick={deleteLeague} className={styles.deleteBtn}>Excluir Liga</Button> 
         <div className={styles.teams}>
           {teams ? teams.map(team => (
             <TeamContainer 
@@ -62,3 +76,4 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     }
   }
 }
+
