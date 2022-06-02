@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 import { GetServerSideProps } from "next";
 import { http } from "../../utils/http";
 import toast from "react-hot-toast";
-import { AiFillBackward, AiOutlineDelete, AiOutlineRotateRight } from "react-icons/ai";
+import {  AiOutlineDelete, AiOutlineArrowLeft } from "react-icons/ai";
 
 
 
@@ -35,7 +35,7 @@ interface TeamProps{
 
 
 const Team: React.FC<TeamProps> =({team, members}) =>  {
-
+const router = useRouter()
   async function deleteTeam(){
 
     try {
@@ -47,14 +47,15 @@ const Team: React.FC<TeamProps> =({team, members}) =>  {
     }
   }  
 
-  const router = useRouter()
   return (
     <div className={styles.contentContainer}>
-      <h1>Detalhes do Time</h1>
+      <div className={styles.headerContainer}>
+        <IconButton onClick={() => router.push(`/leagues/${team.competition_id}`)}><AiOutlineArrowLeft/></IconButton>
+        <h1>Detalhes do Time</h1>
+        <IconButton onClick={deleteTeam} className={styles.deleteBtn}><AiOutlineDelete/></IconButton>
+      </div>
       <div>
-      <IconButton onClick={() => router.push(`/leagues/${team.competition_id}`)}><AiFillBackward></AiFillBackward> Pagina de Ligas</IconButton>
-      <IconButton onClick={() => router.push(`/create-member/${router.query.id}`)}>Adicionar um novo Membro</IconButton>
-      <IconButton onClick={deleteTeam} className={styles.deleteBtn}><AiOutlineDelete></AiOutlineDelete> Excluir Time</IconButton>
+      <Button variant="contained" onClick={() => router.push(`/create-member/${router.query.id}`)}>Adicionar um novo Membro</Button>
       </div>
       <div className={styles.details}>
         <img src={team.img} alt={team.name} />
@@ -62,7 +63,7 @@ const Team: React.FC<TeamProps> =({team, members}) =>  {
         <p>{team.competition.name}</p>
       </div>
       <h3>Membros</h3>
-      <Table rows={members}/>
+      <Table teamId={router.query.id as string} rows={members}/>
     </div>
   )
 }

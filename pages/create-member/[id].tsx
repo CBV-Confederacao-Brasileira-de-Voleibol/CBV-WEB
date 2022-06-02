@@ -98,8 +98,11 @@ export default function CreateMember(){
 
             )}
           />
-          <Button type="submit" variant="contained">Cadastrar</Button>
-        </form>
+            <div className={styles.buttonDiv}>
+              <Button type="button"  variant="outlined" onClick={() => push(`/team/${id}`)} >Voltar</Button>
+              <Button type="submit" variant="contained">Cadastrar</Button>
+            </div>       
+         </form>
       </div>
     </div>
   )

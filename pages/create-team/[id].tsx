@@ -55,7 +55,10 @@ export default function CreateTeams(){
 
               )}
             />
-            <Button type="submit" variant="contained">Cadastrar</Button>
+            <div className={styles.buttonDiv}>
+              <Button type="button"  variant="outlined" onClick={() => push(`/leagues/${id}`)} >Voltar</Button>
+              <Button type="submit" variant="contained">Cadastrar</Button>
+            </div>
           </form>
         </div>
     </div>

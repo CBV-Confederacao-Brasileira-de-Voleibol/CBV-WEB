@@ -39,8 +39,8 @@ const League:React.FC<TeamProps> =({teams}) => {
   return (
     <div className={styles.contentContainer}>
       <div className={styles.top}>
-        {teams.length < 14 && <IconButton onClick={() => router.push(`/create-team/${router.query.id}`)}>Adicionar um novo time</IconButton>}
-        <IconButton onClick={deleteLeague} className={styles.deleteBtn}><AiOutlineDelete></AiOutlineDelete>Excluir Liga</IconButton> 
+        {teams.length < 14 && <Button variant="contained" onClick={() => router.push(`/create-team/${router.query.id}`)}>Adicionar um novo time</Button>}
+        <IconButton onClick={deleteLeague} className={styles.deleteBtn}><AiOutlineDelete/></IconButton> 
         <div className={styles.teams}>
           {teams ? teams.map(team => (
             <TeamContainer 
@@ -72,8 +72,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   } = ctx;
 
   const {data: teams} = await http.get(`/team/competition/${id}`);
-
-  console.log(teams)
 
   return {
     props: {
