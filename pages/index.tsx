@@ -35,7 +35,7 @@ const Home:React.FC<LeagueProps> = ({competitions}) =>{
         }
       </div>
 
-      <Button onClick={() => router.push("/competition-registration")}>Adicione nova liga</Button>
+      <Button variant="contained" onClick={() => router.push("/competition-registration")}>Adicione nova liga</Button>
     </div>
   );
 }
