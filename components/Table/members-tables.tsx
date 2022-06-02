@@ -6,6 +6,9 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import router from "next/router";
+import { AiOutlineDelete, AiOutlineEdit } from "react-icons/ai";
+import toast from "react-hot-toast";
+import { http } from "../../utils/http";
 
 interface tableProps {
   rows: rowProp[];
@@ -31,6 +34,18 @@ function getAge(date: Date){
 }
 
 export function Table({ rows }: tableProps) {
+
+  async function deleteMember(){
+
+    try {
+      await http.delete(`/member/${rows.map(row => row.id)}`)
+      toast.success('Membro deletado com sucesso')
+      router.push("/")
+    }catch (error) {
+      toast.error(error.message)
+    }
+  }
+
   return (
     <TableContainer component={Paper} sx={{ maxWidth: 1000 }}>
       <MuiTable sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
@@ -40,8 +55,8 @@ export function Table({ rows }: tableProps) {
             <TableCell align="right">Tipo</TableCell>
             <TableCell align="right">Idade</TableCell>
             <TableCell align="right">Posição</TableCell>
-            <TableCell align="right">Editar</TableCell>
-            <TableCell align="right">Excluir</TableCell>
+            <TableCell align="center"><AiOutlineEdit></AiOutlineEdit></TableCell>
+            <TableCell align="center"><AiOutlineDelete></AiOutlineDelete></TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -55,7 +70,7 @@ export function Table({ rows }: tableProps) {
               <TableCell align="right">{getAge(row.age)}</TableCell>
               <TableCell align="right">{row.position}</TableCell>
               <TableCell align="right"><button>Editar Jogador</button></TableCell>
-              <TableCell align="right"><button>Excluir Jogador</button></TableCell>
+              <TableCell align="right"><button onClick={deleteMember}>Excluir Jogador</button></TableCell>
             </TableRow>
           ))}
         </TableBody>
