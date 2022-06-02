@@ -537,7 +537,7 @@ export function Matches() {
       >
         {mockedData[currentRound].map((item) => (
           <ListItem key={item.id}>
-            <div onClick={() => router.push(`/result/${item.id}`)} className={styles.match}>
+            <div onClick={() => router.push(`/result/1b818fc1-f483-4d83-9a4b-667b4b0b7c01/9723349f-f187-4082-b328-1b8e79dec8bf`)} className={styles.match}>
               <div className={styles.team}>
                 <img src={item.team1.img} alt=""  />
                 <strong>{item.team1.total}</strong>
@@ -582,7 +582,7 @@ export function Matches() {
       >
         {mockedData2[reverseDictionary[currentPhase]].map((item) => (
           <ListItem key={item.id}>
-            <div onClick={() => router.push(`/result/${item.id}`)} className={styles.match}>
+            <div onClick={() => router.push(`/result/1b818fc1-f483-4d83-9a4b-667b4b0b7c01/9723349f-f187-4082-b328-1b8e79dec8bf`)} className={styles.match}>
               <div className={styles.team}>
                 <img src={item.team1.img} alt=""  />
                 <strong>{item.team1.total}</strong>

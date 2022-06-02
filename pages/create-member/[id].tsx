@@ -50,11 +50,11 @@ export default function CreateMember(){
                 labelId="type"
                 onChange={onChange}
                 options={[
-                  { value: "atleta", label: "Atleta" },
-                  { value: "tecnico", label: "Técnico" },
-                  { value: "comissao-tecnica", label: "Comissão Técnica" },
-                  { value: "medico", label: "Médico" },
-                  { value: "dirigente", label: "Dirigente" },
+                  { value: "Atleta", label: "Atleta" },
+                  { value: "Tecnico", label: "Técnico" },
+                  { value: "Comissao Tecnica", label: "Comissão Técnica" },
+                  { value: "Medico", label: "Médico" },
+                  { value: "Dirigente", label: "Dirigente" },
                 ]}
                 value={value}
               />
@@ -85,13 +85,13 @@ export default function CreateMember(){
                 label="Posição"
                 labelId="position"
                 onChange={onChange}
-                disabled={type !== "atleta"}
+                disabled={type !== "Atleta"}
                 options={[
-                  { value: "ponteiro", label: "Ponteiro" },
-                  { value: "libero", label: "Libero" },
-                  { value: "levantador", label: "Levantador" },
-                  { value: "oposto", label: "Oposto" },
-                  { value: "central", label: "Central" },
+                  { value: "Ponteiro", label: "Ponteiro" },
+                  { value: "Libero", label: "Libero" },
+                  { value: "Levantador", label: "Levantador" },
+                  { value: "Oposto", label: "Oposto" },
+                  { value: "Central", label: "Central" },
                 ]}
                 value={value}
               />          
